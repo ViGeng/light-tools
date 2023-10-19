@@ -1,9 +1,11 @@
-# Common Tools
+# A Collection for Common Tools, Snippet, Template, and Small Project
 
-## Citation Number Query
-### Requirements
-```bash
-pip install scholarly
-```
-### Todo
--[ ] use proxy (such as Scraper API) to avoid Google Scholar's anti-scraping mechanism
+## Roadmap
+
+- [ ] use pytorch directly rather build upon cuda images
+
+## Table of Contents
+
+- [Dockerfile](/dockerfiles/README.md)
+  - [ubuntu18.04-cuda110-conda](dockerfiles/ubuntu18.04-cuda110-conda)
+  - [ubuntu18.04-cuda117-conda](dockerfiles/ubuntu18.04-cuda117-conda)

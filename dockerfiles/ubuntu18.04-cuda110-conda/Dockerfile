@@ -4,8 +4,8 @@ FROM nvidia/cuda:11.0.3-base-ubuntu18.04
 # Change source to Tsinghua
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 
-# Install Git and curl
-RUN apt-get update && apt-get install -y git && apt-get install -y curl
+# Install Git, curl, and vim
+RUN apt-get update && apt-get install -y git && apt-get install -y curl && apt-get install -y vim
 
 # Install Miniconda
 RUN curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
@@ -22,7 +22,9 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pk
 
 
 # Change pip source to Tsinghua
-RUN mkdir ~/.pip && echo "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple" > ~/.pip/pip.conf
+RUN mkdir ~/.pip
+RUN echo "[global]" > ~/.pip/pip.conf
+RUN echo "index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf
 
 # docker build -t wgeng/ubuntu18.04-cuda110-conda .
 # docker run --ipc=host --gpus all -dt --name eventHPE -v /home/rowan/dataset:/root/dataset wgeng/ubuntu18.04-cuda110-conda
