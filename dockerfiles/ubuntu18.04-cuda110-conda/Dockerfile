@@ -1,5 +1,5 @@
 # Start with the base image
-FROM nvidia/cuda:11.7.1-base-ubuntu18.04
+FROM nvidia/cuda:11.0.3-base-ubuntu18.04
 
 # Change source to Tsinghua
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
@@ -18,4 +18,5 @@ ENV PATH="/opt/miniconda/bin:$PATH"
 # Change source to Tsinghua
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 
-# docker build -t wgeng/ubuntu18.04-conda .
+# docker build -t wgeng/ubuntu18.04-cuda110-conda .
+# docker run --ipc=host --gpus all -dt --name eventHPE wgeng/ubuntu18.04-cuda110-conda
