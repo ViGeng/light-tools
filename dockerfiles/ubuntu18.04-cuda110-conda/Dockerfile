@@ -14,9 +14,15 @@ RUN curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
 
 # Set up Conda in the environment
 ENV PATH="/opt/miniconda/bin:$PATH"
+RUN conda init bash
 
 # Change source to Tsinghua
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+
+
+# Change pip source to Tsinghua
+RUN mkdir ~/.pip && echo "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple" > ~/.pip/pip.conf
 
 # docker build -t wgeng/ubuntu18.04-cuda110-conda .
-# docker run --ipc=host --gpus all -dt --name eventHPE wgeng/ubuntu18.04-cuda110-conda
+# docker run --ipc=host --gpus all -dt --name eventHPE -v /home/rowan/dataset:/root/dataset wgeng/ubuntu18.04-cuda110-conda
